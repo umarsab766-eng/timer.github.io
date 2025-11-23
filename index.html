@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
+
+    <style>
+        body {
+            background: #121212;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #00c3ff;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #00c3ff;
+        }
+
+        #Timer {
+            font-size: 70px;
+            font-weight: bold;
+            background: #1c1c1c;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px #00c3ff;
+        }
+    </style>
+
+</head>
+<body onload="brython()">
+
+    <h1>Digital Timer</h1>
+    <p id="Timer">00:00:00</p>
+
+    <script type="text/python">
+from browser import document, timer
+from datetime import datetime as dt
+
+t = document['Timer']
+
+def update_timer():
+    now = dt.now()
+    current_time = now.strftime("%H:%M:%S")
+    t.text = current_time
+
+timer.set_interval(update_timer, 1000)
+    </script>
+
+</body>
+</html>
